@@ -2,25 +2,42 @@
 
 
 ## Description
-This website was created to randomly generate a password based of users criteria
+
 
 ## Installation
-Files sent over to github account 
+
 
 ## Usage
-Not Applicable 
+GIVEN I am taking a code quiz
+WHEN I click the start button
+    THEN a timer starts 
+    THEN I am presented with a question <<How does this happen>>
+WHEN I answer a question correctly <<How will the code know which answer is correct?>>
+    THEN I am presented with another question <<Function!!!>>
+WHEN I answer a question incorrectly
+    THEN time is subtracted from the clock
+    THEN I am presented with another question <<Function!!!>>
+WHEN all questions are answered or the timer reaches 0
+    THEN the game is over <<Function!!!>>
+WHEN the game is over
+    THEN I can save my initials and score <<Function!!!>>
+
+
+Other notes Gary made:
+<<Maybe there is anttribute that you can add to the correct answer>>
+<<Each question would be an object, all the questions would be an array>>
+
 
 ## Technologies Used
 
-Bootstrap, JavaScript, GoogleFont, code formatter
+
 
 ## Problems I faced
 
-I had a lot of test syntax errors which did not allow my prompts to display
+
 
 ## Credits
 
-Help from my study group, Google, w3shools, https://www.freeformatter.com/javascript-beautifier.html
 
 
 ## Image
