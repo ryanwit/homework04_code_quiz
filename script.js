@@ -6,48 +6,54 @@ var questionContainer = document.getElementById("questionContainer");
 var questionTitle = document.getElementById("questionTitle");
 var answerButton = document.getElementById("answerButton");
 
-var timeEl = document.querySelector("time");
+var timeEl = document.getElementById("time");
 var index = 0;
 var secondsLeft = 60;
 
 // section for questions - input actual questions later 
 var questions = [{
-    title: "Question 1: What question do you have?",
-    choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 1"
+    title: "Question 1: What attribute is used to decorate content",
+    choices: ["style", "css", "html", "body"],
+    answer: "style"
 },{
-    title: "Question 2: What question do you have?",
-    choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 2" 
+    title: "Question 2: HTML tag not included in HEAD Tag?",
+    choices: ["link", "header", "meta", "title"],
+    answer: "header" 
 },{
-    title: "Question 3: What question do you have?",
-    choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 3"
+    title: "Question 3: What is the largest header tag? ",
+    choices: ["h6", "h3", "h1", "h10"],
+    answer: "h1"
 },{
-    title: "Question 4: What question do you have?",
+    title: "Question 4: What does CSS stand for?",
     choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
     answer: "Answer 4"
 },{
     title: "Question 5: What question do you have?",
     choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 5"
+    answer: "Answer 1"
 }]
 
-function timer() {
-timerCountdown = setInterval(function(){
-    countdown--;
-    timeLeft.textContent = countdown + " seconds remaining";
-    if (countdown === 0) {
-        clearInterval(timerCountdown);
-    }
-}, 1000)
+// Timer function
+function startCountdown() {
+    var countDown = setInterval (function() {
+        secondsLeft--;
+        timeEl.textContent = secondsLeft + " seconds remaining!"
+        if (secondsLeft === 0) {
+            clearInterval(countDown);
+        }
+    }, 1000)
+    
+    
+ 
 }
+
 
 //a function that starts the quiz by removing the attribute "hidden"
 function startQuiz() {
     startScreen.setAttribute("class", "hide")
     questionContainer.removeAttribute("class")
     // start timer here
+    startCountdown();
     getQuestion();
 }
 
@@ -60,11 +66,27 @@ function getQuestion() {
     currentQuestion.choices.forEach(function(choice,i){
         console.log(choice,i) 
         var button = document.createElement("button")
-        button.textContent = choice
-        answerButton.appendChild(button)
+        button.setAttribute("value", choice);
+        button.textContent = choice;
+        button.onclick = answerQuestion;
+        answerButton.appendChild(button);
         
     });
 }
+
+function answerQuestion(event) {
+    var userSelection = event.target.value
+    var correctAnswer = questions[index].answer
+
+    if(userSelection === correctAnswer) {
+        alert("correct answer")
+    } else {
+        alert("incorrect")
+        secondsLeft -= 10
+    }
+    index +=1    
+    getQuestion();   
+} 
 
 
 startBtn.onclick = startQuiz
