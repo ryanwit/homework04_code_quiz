@@ -1,4 +1,4 @@
-var timeEl = document.querySelector(".time");
+var timeEl = document.querySelector("time");
 var mainEl = document.getElementById("main");
 var startScreen = document.getElementById("startScreen");
 var startBtn = document.getElementById("startbtn");
@@ -8,10 +8,11 @@ var answerButton = document.getElementById("answerButton");
 var index = 0;
 var secondsLeft = 60;
 
+// section for questions - input actual questions later 
 var questions = [{
     title: "Question 1: What question do you have?",
     choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 2"
+    answer: "Answer 1"
 },{
     title: "Question 2: What question do you have?",
     choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
@@ -19,16 +20,17 @@ var questions = [{
 },{
     title: "Question 3: What question do you have?",
     choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 2"
+    answer: "Answer 3"
 },{
     title: "Question 4: What question do you have?",
     choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 2"
+    answer: "Answer 4"
 },{
     title: "Question 5: What question do you have?",
     choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 2"
+    answer: "Answer 5"
 }]
+
 function setTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
@@ -40,7 +42,7 @@ function setTime() {
         }
     }, 1000);
 }
-
+//a function that starts the quiz by removing the attribute "hidden"
 function startQuiz() {
     startScreen.setAttribute("class", "hide")
     questionContainer.removeAttribute("class")
@@ -48,12 +50,13 @@ function startQuiz() {
     getQuestion();
 }
 
+//function to get questions 
 function getQuestion() {
     var currentQuestion = questions [index]
     questionTitle.textContent = currentQuestion.title
     answerButton.innerHTML = ""
     currentQuestion.choices.forEach(function(choice,i){
-        console.log(choice,i) 
+        // console.log(choice,i) 
     })
 }
 
