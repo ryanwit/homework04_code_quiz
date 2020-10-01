@@ -13,7 +13,7 @@
 
 </head>
 <body>
-
+        <!-- TIMER -->
     <div class = "container">
         <div class="row">
             <div class="col-12">
@@ -22,37 +22,52 @@
         </div>
 
 
-    
+    <!-- TITLE PAGE -->
+    <main>
     <div id="main">
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <h1>Quiz Challenge</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <div id="startScreen">
                     <p>"Coding Quiz Challenge: Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by 10 seconds!
                      </p>
+                     <div class="col-6">
+                        <button id="startbtn">START QUIZ</button>
+                    </div>
                 </div>
             </div>
         </div>
         <div>
-            
+            <div class="row">
+                
+            </div>
         </div>
+        </div>
+    </main>
        
-
-        <div id="questionContainer" class="hide">
-            <div id="questionTitle"></div>
-            <div id="answerButton" class="btn-grid">
-                <h4>Start Quiz</h4>
+        <!-- QUESTION CONTAINER -->
+    <section>
+        <div class ="row">
+            <div class ="col-6">
+                <div id="questionContainer" class="hide">
+                    <h3 id="questionTitle"></h3>
+                    <div id="answerButton" class="btn-grid"></div>
             </div>
 
-            <div class="controls">
+        </div>
+    </section>
+        
+        
+
+            <!-- <div class="controls">
                 <button id="startButton" class="startBtn btn">Start</button>
                 <button id="nextButton" class="nextBtn btn hide">Next</button>
-            </div>
-
+            </div> -->
+        
 
     </div>
 

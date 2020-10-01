@@ -1,10 +1,12 @@
-var timeEl = document.querySelector("time");
+
 var mainEl = document.getElementById("main");
 var startScreen = document.getElementById("startScreen");
 var startBtn = document.getElementById("startbtn");
 var questionContainer = document.getElementById("questionContainer");
 var questionTitle = document.getElementById("questionTitle");
 var answerButton = document.getElementById("answerButton");
+
+var timeEl = document.querySelector("time");
 var index = 0;
 var secondsLeft = 60;
 
@@ -31,17 +33,16 @@ var questions = [{
     answer: "Answer 5"
 }]
 
-function setTime() {
-    var timerInterval = setInterval(function() {
-        secondsLeft--;
-        timeEl.textContent = secondsLeft + " seconds left till end";
-
-        if(secondsLeft === 0) {
-            clearInterval(timerInterval);
-            sendMessage();
-        }
-    }, 1000);
+function timer() {
+timerCountdown = setInterval(function(){
+    countdown--;
+    timeLeft.textContent = countdown + " seconds remaining";
+    if (countdown === 0) {
+        clearInterval(timerCountdown);
+    }
+}, 1000)
 }
+
 //a function that starts the quiz by removing the attribute "hidden"
 function startQuiz() {
     startScreen.setAttribute("class", "hide")
@@ -53,11 +54,16 @@ function startQuiz() {
 //function to get questions 
 function getQuestion() {
     var currentQuestion = questions [index]
+    console.log(currentQuestion)
     questionTitle.textContent = currentQuestion.title
     answerButton.innerHTML = ""
     currentQuestion.choices.forEach(function(choice,i){
-        // console.log(choice,i) 
-    })
+        console.log(choice,i) 
+        var button = document.createElement("button")
+        button.textContent = choice
+        answerButton.appendChild(button)
+        
+    });
 }
 
 
