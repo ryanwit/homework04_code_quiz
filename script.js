@@ -5,7 +5,12 @@ var startBtn = document.getElementById("startbtn");
 var questionContainer = document.getElementById("questionContainer");
 var questionTitle = document.getElementById("questionTitle");
 var answerButton = document.getElementById("answerButton");
-
+var highScore = document.getElementById("highScore");
+var highScoreButton = document.getElementById("highScoreButton");
+var highScoreContainer = document.getElementById("highScoreContainer");
+var initials = document.getElementById("initials");
+var finalScore = document.getElementById("score")
+var countDown;
 var timeEl = document.getElementById("time");
 var index = 0;
 var secondsLeft = 60;
@@ -25,22 +30,22 @@ var questions = [{
     answer: "h1"
 },{
     title: "Question 4: What does CSS stand for?",
-    choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 4"
+    choices: ["Cool Style Sheets", "Color Style Sheets", "Cascading Style Software", "Cascading Style Sheets"],
+    answer: "Cascading Style Sheets"
 },{
-    title: "Question 5: What question do you have?",
-    choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 1"
+    title: "Question 5: What does HTML Stand for?",
+    choices: ["Hyper Text Markup Language", "Hyper Technology Markup Language", "Hyper Telephone Machine Language", "Hollow Text Markup Language"],
+    answer: "Hyper Text Markup Language"
 }]
 
 // Timer function
 function startCountdown() {
-    var countDown = setInterval (function() {
+        countDown = setInterval (function() {
         secondsLeft--;
-        timeEl.textContent = secondsLeft + " seconds remaining!"
+        timeEl.textContent = "Timer:  " + secondsLeft + " seconds remaining!"
         if (secondsLeft === 0) {
             clearInterval(countDown);
-        }
+        } 
     }, 1000)
     
     
@@ -66,7 +71,7 @@ function getQuestion() {
     currentQuestion.choices.forEach(function(choice,i){
         console.log(choice,i) 
         var button = document.createElement("button")
-        button.setAttribute("value", choice);
+        button.setAttribute("value", choice); 
         button.textContent = choice;
         button.onclick = answerQuestion;
         answerButton.appendChild(button);
@@ -76,17 +81,45 @@ function getQuestion() {
 
 function answerQuestion(event) {
     var userSelection = event.target.value
+    console.log(userSelection)
     var correctAnswer = questions[index].answer
 
     if(userSelection === correctAnswer) {
-        alert("correct answer")
+        alert("Correct!")
     } else {
-        alert("incorrect")
+        alert("Wrong Answer minus 10 seconds")
         secondsLeft -= 10
-    }
+    } 
+    
     index +=1    
-    getQuestion();   
+    // getQuestion();
+        if(index === questions.length) {
+            quizEnd();
+        } else {
+            getQuestion();
+        }
 } 
 
+function quizEnd() {
+    clearInterval(countDown);
+    highScoreContainer.setAttribute("class", "show");
+    finalScore.textContent = secondsLeft;
+    questionContainer.setAttribute("class", "hide");
+    highScore();
+}
 
-startBtn.onclick = startQuiz
+function highScore() {
+    var initials = initials.value.trim()
+    var highscores = JSON.parse(localStorage.getItem("highscore")) || []
+
+    if(initials !== "") 
+    { var newScore = {
+        score : secondsLeft,
+        initials : initials,
+    }
+    highscores.push(newScore);
+        localStorage.setItem("highscores", JSON.stringify(highscores))
+    }
+}
+
+startBtn.onclick = startQuiz;
